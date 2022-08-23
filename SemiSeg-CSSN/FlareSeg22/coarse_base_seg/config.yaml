@@ -1,0 +1,62 @@
+ENVIRONMENT:
+  NUM_GPU: 1
+  DATA_BASE_DIR: 'FlareSeg22/dataset/'
+
+DATA_LOADER:
+  TRAIN_VAL_FOLD: 1
+  TRAIN_DB_FILE: 'db/seg_train_fold_1'
+  TRAINU_DB_FILE: 'db/seg_trainu'
+  VAL_DB_FILE: 'db/seg_val_fold_1'
+  TEST_DB_FILE: 'db/seg_val_fold_1'
+  BAD_CASE_SERIES_IDS_TXT: None
+  BAD_CASE_AUGMENT_TIMES: 3
+  LABEL_INDEX: [1, 2, 3, 4,5,6,7,8,9,10,11,12,13]
+  LABEL_NUM: [1, 1, 1, 1,1, 1, 1,1, 1, 1,1, 1, 1]
+  LABEL_NAME: ['1Liver', '2Right_Kidney', '3Spleen', '4Pancreas', "5Aorta", "6IVC", "7RAG","8LAG", "9Gallbladder", "10Esophagus", "11Stomach", "12Dduodenum","13Left_Kidney"]
+
+  IS_COARSE: True
+  IS_NORMALIZATION_HU: True
+  IS_NORMALIZATION_DIRECTION: True
+  WINDOW_LEVEL: [-325, 325]
+  EXTEND_SIZE: 20
+  NUM_WORKER: 4
+  BATCH_SIZE: 1
+
+DATA_AUGMENT:
+  IS_ENABLE: False
+  IS_RANDOM_FLIP: False
+  IS_RANDOM_ROTATE: False
+  IS_RANDOM_SHIFT: True
+  IS_RANDOM_CROP_TO_LABELS: False
+  IS_ELASTIC_TRANSFORM: False
+  IS_ADD_GAUSSIAN_NOISE: False
+  IS_CHANGE_ROI_HU: True
+  ROI_HU_RANGE: [-200, 200]
+  ROTATE_ANGLE: [-10, 10]
+  MAX_EXTEND_SIZE: 40
+  SHIFT_MAX_RATIO: 0.3
+
+COARSE_MODEL:
+  META_ARCHITECTURE: 'UNet'
+  INPUT_SIZE: [160, 160, 160]
+  NUM_CLASSES: 13
+  NUM_CHANNELS: [16, 32, 64, 128, 256]
+  ENCODER_CONV_BLOCK: 'ResFourLayerConvBlock'
+  DECODER_CONV_BLOCK: 'ResTwoLayerConvBlock'
+  CONTEXT_BLOCK: None
+  NUM_DEPTH: 4
+  IS_PREPROCESS: False
+  IS_POSTPROCESS: False
+  IS_DYNAMIC_EMPTY_CACHE: True
+  WEIGHT_DIR: None
+
+TRAINING:
+  OPTIMIZER:
+    LR: 1e-2
+  SCHEDULER:
+    TOTAL_EPOCHS: 500
+  SAVER:
+    SAVER_DIR: './output/train'
+  IS_DISTRIBUTED_TRAIN: True
+  IS_APEX_TRAIN: True
+  LOSS: 'diceAndFocal'
