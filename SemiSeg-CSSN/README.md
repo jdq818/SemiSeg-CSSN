@@ -11,7 +11,7 @@ and supervise each other’s training in the way of cross supervision.
 - This method won the top 10 place on the [2022-MICCAI-FLARE](https://flare22.grand-challenge.org/) challenge. Where participants were required to effectively and efficiently segment multi-organ in abdominal CT with few labeled and large number of unlabeled images.
 ## Benchmark
 |Task | L/U | DSC | NSC | Inference time(s) | GPU memory(MB) |
-|:---:|:---:|:---:|:---:|:---:|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 |[FLARE22](https://flare22.grand-challenge.org/)| 50/0 | 0.709 | 0.748 | - | - |
 |[FLARE22](https://flare22.grand-challenge.org/)| 50/2000| 0.777 | 0.820 | 12.9 | 2052 |
 |[FLARE22](https://flare22.grand-challenge.org/)| 50/200 (UIF)| 0.791 | 0.841 | - | - |
