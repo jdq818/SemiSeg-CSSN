@@ -61,7 +61,6 @@ def convert_mask_2_one_hot(npy_mask, label=None):
     npy_mask_czyx = npy_mask_czyx.astype(np.uint8)
     return npy_mask_czyx
 def bbox_regions(mask):
-    #如果想分别对每一个连通区域进行操作，比如计算面积、外接矩形、凸包面积等，则需要调用#measure子模块的regionprops（）函数
     label = measure.label(mask)
     props = measure.regionprops(label)
 
@@ -69,15 +68,15 @@ def bbox_regions(mask):
     for ia in range(len(props)):
         numPix += [props[ia].area]
 
-    #像素最多的连通区域及其指引
+    #regions with maximum pixels and their indexes
     maxnum = max(numPix)
     index = numPix.index(maxnum)
 
-    #最大连通区域的bounding box
+    #bounding box of maximum union region
     bbbox_region = props[index].bbox#[minr, maxr),[minc, maxc)
     centroid = props[index].centroid#[minr, maxr),[minc, maxc)
     #minr, minc, maxr, maxc = props[index].cent#[minr, maxr),[minc, maxc)
-    # #最大连通区域中的原始值
+    # #original values of union regions
     # classPlat = testa0[minr,minc]-1
     return round(centroid[0])
 def extract_bbox_center(out_coarse_mask,coarse_spacing):
