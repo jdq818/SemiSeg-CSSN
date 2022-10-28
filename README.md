@@ -9,7 +9,7 @@ Semi-supervised segmentation with cross supervision [flaree2022 challenge]
 - Cross supervision to train the SemiSeg-CSSN. Two networks with the same architecture were introduced, and they were initialized differently at the beginning of training. These two segmentation networks can generate pseudo label images,
 and supervise each other’s training in the way of cross supervision. 
 - We employed a filtering strategy (UIF) for unlabeled images. These selected unlabeled images have pseudo label images with low uncertainty, which can ensure the stability of training
-- This method won the 9-th on the [2022-MICCAI-FLARE](https://flare22.grand-challenge.org/) challenge. Where participants were required to effectively and efficiently segment multi-organ in abdominal CT with few labeled and large number of unlabeled images.
+- This method won the 9-th place on the [2022-MICCAI-FLARE](https://flare22.grand-challenge.org/) challenge. Where participants were required to effectively and efficiently segment multi-organ in abdominal CT with few labeled and large number of unlabeled images.
 ## Benchmark
 |Task | L/U | DSC | NSC | Inference time(s) | GPU memory(MB) |
 |:---:|:---:|:---:|:---:|:---:|:---:|
